@@ -9,13 +9,13 @@
 
 [Vivado HLS - 2021.1 - Why does synthesis stall when using Windows OS?](https://support.xilinx.com/s/article/Patch-AR-for-HLS-IP-patch?language=en_US)
 
-### 0. 下載上述連結的 zip 檔案後將其解壓縮到 C 槽，並增加一環境變數後重啟 Vivado 即可解決
+### 0. After downloading the zip file from the above link, extract it to the C drive. Then, add an environment variable and restart Vivado to resolve the issue
 
 <img src="Images/M1.png"/>
 
 ## Build ZC702 Block Design on Vivado
 
-### 1. (前略)參照 ZC702 HDMI Block Design，並加入 Video Mixer 與 x2 GPIO
+### 1. Refer to the ZC702 HDMI Block Design, and add Video Mixer and two GPIOs
 
 + ZYNQ7 Processing System
 
@@ -69,13 +69,13 @@
 
 <img src="Images/M16.png"/>
 
-+ 將以上 IP 開始進行連接 – 不要接 sof_state_out
++ Connect the above IPs – do not connect 'sof_state_out'
 
 <img src="Images/M17.png"/>
 
 <img src="Images/M18.png"/>
 
-Run Connection Automation – Clock Source 全部選 148MHz
+Run Connection Automation – Select 148 MHz for all Clock Sources
 
 <img src="Images/M19.png"/>
 
@@ -87,15 +87,15 @@ Run Connection Automation – Clock Source 全部選 148MHz
 
 <img src="Images/M23.png"/>
 
-### 2. 添加 XDC 內容，可以從此[網址](https://support.xilinx.com/s/feed/0D52E00007IPcI2SAL?language=en_US)前往下載
+### 2. Add the XDC content, which can be downloaded from this [link](https://support.xilinx.com/s/feed/0D52E00007IPcI2SAL?language=en_US)
 
-或是你可以在 XVES_0019\src\constr\ZC702.xdc 找到檔案
+Alternatively, you can find the file in 'XVES_0019\src\constr\ZC702.xdc'
 
-記得 HDMI 輸出 Port 要跟 XDC Port 名稱一樣
+Remember, the HDMI output port must match the port names specified in the XDC file
 
 <img src="Images/M24.png"/>
 
-修改 XDC 內容
+Modify the XDC content
 
 <img src="Images/M25.png"/>
 
@@ -107,31 +107,31 @@ Run Connection Automation – Clock Source 全部選 148MHz
 
 <img src="Images/M28.png"/>
 
-### 4. Export Hardware，這步會輸出 XSA 到 Vitis 中做 C Code 的撰寫來控制 FPGA
+### 4. This step will export the XSA to Vitis for writing C code to control the FPGA
 
 <img src="Images/M29.png"/>
 
 ## Build ZC702 Application on Vitis
 
-### 5. 打開 Vitis，匯入 XSA 建立 Platform
+### 5. Open Vitis and import the XSA to create the Platform
 
 <img src="Images/M30.png"/>
 
-+ Platform 建立後要進行 Build 以產生連結檔
++ After creating the Platform, proceed with the Build to generate the linking files
 
 <img src="Images/M31.png"/>
 
-### 6. 選擇 BSP 並透過官方提供的 Video Mixer Example Code 建立 Application
+### 6. Select BSP and create an Application using the official Video Mixer Example Code provided
 
 <img src="Images/M32.png"/>
 
 <img src="Images/M33.png"/>
 
-### 7. 匯入先前 ZC702 HDMI 寫入 ADI HDMI Chip 的 code
+### 7. Import the previously written code for ZC702 HDMI to write to the ADI HDMI Chip
 
 <img src="Images/M34.png"/>
 
-### 8. 開啟 xv_mix_example.c 增加部分 code
+### 8. Open 'xv_mix_example.c' and add the following code snippets
 
 <img src="Images/M35.png"/>
 
@@ -143,7 +143,7 @@ Run Connection Automation – Clock Source 全部選 148MHz
 
 <img src="Images/M38.png"/>
 
-+ Build 有 error，發現是 GPIO 名稱跟 Vivado 不一樣，要改
++ The build has an error because the GPIO names do not match Vivado. They need to be changed
 
 <img src="Images/M39.png"/>
 
@@ -151,11 +151,11 @@ Run Connection Automation – Clock Source 全部選 148MHz
 
 <img src="Images/M41.png"/>
 
-### 9. 右鍵 Application 並選擇 Run as 1 Launch Hardware，查看結果
+### 9. Right-click on the application and select "Run as" -> "1 Launch Hardware" to view the results
 
 <img src="Images/M42.png"/>
 
-+ ZC702 硬體配置
++ ZC702 Hardware Configuration
 
 <img src="Images/M43.png"/>
 
