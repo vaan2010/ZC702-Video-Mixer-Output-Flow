@@ -1,7 +1,7 @@
 # ZC702 Video Mixer Output Flow
 + This article mainly explains how to use the official demo to output Video Mixer via ADV7511 HDMI on ZC702
 
-**Last update: 2024/05/13**
+**Last update: 2024/05/18**
 
 + Vivado Version: 2021.1
 
